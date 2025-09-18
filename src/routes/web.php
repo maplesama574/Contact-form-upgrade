@@ -22,5 +22,5 @@ Route::post('/thanks', [ContactController::class, 'thanks']);
 Route::get('/admin', [AdminController::class, 'dashboard']);
 Route::get('/login', [AuthController::class, 'showLoginForm']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/register', [AuthController::class, 'showRegisterForm']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);

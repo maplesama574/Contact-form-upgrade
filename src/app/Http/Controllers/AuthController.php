@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -20,6 +22,12 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
-        //処理
+        $request->validate(
+            [
+                'name'=> 'required|string|max:255', 
+                'email'=>'required|email|unique:users,email', 
+                'password'=>'required|string|min:8',
+            ]
+            );
     }
 }
