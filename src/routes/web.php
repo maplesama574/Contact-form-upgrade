@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ContactController::class, 'index']);
-Route::post('/confirm', [ContactController::class, 'confirm']);
-Route::post('/thanks', [ContactController::class, 'thanks']);
+Route::get('/contact', [ContactController::class, 'index'])->name('index');
+Route::post('/contact', [ContactController::class, 'confirm']);
+Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');;
+Route::post('/contact/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');;
 Route::get('/admin', [AdminController::class, 'dashboard']);
-Route::get('/login', [AuthController::class, 'showLoginForm']);
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);

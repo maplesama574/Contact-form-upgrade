@@ -1,0 +1,27 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia';
+}
+
+.header{
+    margin: 0 auto;
+    background: white;
+    height: auto;
+    max-width: 100%;
+}
+
+.header-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+.header-logo{
+    margin: 0 auto;
+    color: #9b9690;
+    font-size: 30px;
+    text-decoration: none;
+}

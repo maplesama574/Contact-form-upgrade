@@ -14,7 +14,12 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-        //処理
+        $request->validate(
+            [
+                'email'=>'required|email|unique:users,email', 
+                'password'=>'required|string|min:8',
+            ]
+            );
     }
     public function showRegisterForm()
     {
