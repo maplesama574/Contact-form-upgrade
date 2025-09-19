@@ -10,10 +10,30 @@ class ContactController extends Controller
     {
         return view('contact.index');
     }
-    public function confirm()
+    public function confirm(Request $request)
     {
-        return view('contact.confirm');
-        //表示のみ
+
+        $validated = $request->validate(
+            [
+                'first_name'=>'required|string',
+                'last_name'=>'required|string',
+                'gender' => 'required',  
+                'email'=>'required|email', 
+                'tel1' => 'required|digits:3',
+                'tel2' => 'required|digits:4',
+                'tel3'=> 'required|digits:4',
+                'address'=>'required|string',
+                'building' => 'nullable|string',
+                'department'=>'required', 
+                'message'=>'required|string|max:120', 
+            ]
+            );
+            return view('contact.confirm', ['validated'=>$validated]);
+    }
+
+    public function submit(Request $request)
+    {
+        return redirect()->route('contact.thanks');
     }
     public function thanks()
     {

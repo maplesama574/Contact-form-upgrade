@@ -18,14 +18,14 @@
                         @csrf
                             <div class="login-content__item">
                             <p>メールアドレス</p>
-                            <input class="login-content__input" type="email" name="email" placeholder="例:test@example.com" vaule="{{old('email')}}">
+                            <input class="login-content__input" type="email" name="email" placeholder="例:test@example.com" value="{{old('email')}}">
                             @error('email')
                             <div class="login-error">{{$message}}</div>
                             @enderror
                             </div>
                             <div class="login-content__item">
                             <p>パスワード</p>
-                            <input class="register-content__input" type="password"name="password" placeholder="例:coachtech1106" vaule="{{old('password')}}">
+                            <input class="register-content__input" type="password"name="password" placeholder="例:coachtech1106">
                             @error('password')
                             <div class="login-error">{{$message}}</div>
                             @enderror

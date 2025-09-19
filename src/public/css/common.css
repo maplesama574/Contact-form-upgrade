@@ -9,6 +9,9 @@ body{
     background: white;
     height: auto;
     max-width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    position: relative;
 }
 
 .header-item{
