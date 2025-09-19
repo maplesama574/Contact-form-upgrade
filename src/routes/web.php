@@ -24,8 +24,6 @@ Route::get('/confirm', function(){return redirect()->route('contact.index');});
 
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
-Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
-
 Route::get('/contact/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 
 Route::get('/admin', [AdminController::class, 'dashboard']);

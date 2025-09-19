@@ -32,11 +32,13 @@ class ContactController extends Controller
     }
 
     public function submit(Request $request)
-    {
+    {   //保存処理
         return redirect()->route('contact.thanks');
     }
-    public function thanks()
-    {
+
+        //完了
+    public function thanks(Request $request)
+    {   //保存処理
         return view('contact.thanks');
     }
 }

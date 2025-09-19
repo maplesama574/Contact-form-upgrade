@@ -9,12 +9,14 @@
     height: auto;
     box-sizing: content-box;
 }
-.contact-title{
+.contact-title, 
+.confirm-title{
     text-align: center;
     margin: 0;
     padding: -5px;
 }
-.contact-content{
+.contact-content, 
+.confirm-content{
     margin: 15px auto;
     border-collapse: separate;
     border-spacing: 30px 0;
@@ -52,6 +54,7 @@
 }
 .contact-content__input--radio[type="radio"] {
     accent-color: #897a67;
+    cursor: pointer;
 }
 .contact-content__input--tel{
     flex: 1;
@@ -111,4 +114,117 @@
 }
 .contact-form-erorr{
     color:red;
+}
+
+
+/*以下、confirm.blade.php*/
+.confirm-table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 700px;
+    margin: 0 auto;
+}
+.confirm-table tr, 
+.confirm-table th, 
+.confirm-table td{
+    border: 1px solid #f7f7f7;
+    margin: 0;
+    padding: 10px 20px;
+}
+.confirm-content{
+    width: 100%;
+}
+.confirm-header{
+    display: table-cell;
+    color: white;
+    background: #bba99a;
+    margin:0;
+    width: 200px;
+    text-align: center;
+    padding: 5px 10px;
+}
+.confirm-content__item{
+    width: 500px;
+    word-break: break-word;
+    padding: 5px 10px;
+    text-align: left;
+    display: table-cell;
+}
+
+
+
+/*confirm.blade.phpのsubmit, cancel-button*/
+.confirm-submit{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 0;
+    width: 300px;
+    margin: 0 auto;
+}
+.confirm-button, 
+.cancel-button{
+    display: inline-block;
+    margin: 0;
+    padding: 5px 10px;
+    text-align: center;
+    width: 100px;
+}
+.confirm-button{
+    background-color: #82766a;
+    color: white;
+    border-radius: 3px;
+    margin: 5px auto;
+    cursor: pointer;
+    border: none;
+}
+.cancel-button{
+    color: #82766a;
+    cursor: pointer;
+}
+
+
+/*以下、thanks.blade.php*/
+.thanks-body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.background-text{
+    position: absolute;
+    font-size: 20vw;
+    color: rgba(130, 118, 104, 0.1);
+    user-select: none;
+    pointer-events: none;
+}
+.fore-text{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+}
+.foreground-text{
+    color: #827668;
+    text-align: center;
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 24px;
+}
+.thank-button{
+    text-decoration: none;
+    display: inline-block;
+    background-color: #827668;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 3px;
+    cursor: pointer;
 }

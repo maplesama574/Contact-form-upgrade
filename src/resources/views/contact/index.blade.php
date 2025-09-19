@@ -86,11 +86,11 @@
             <td>
                 <select class="contact-content__select" name="department" id="department">
                     <option class="contact-content__select--option" value="">選択してください</option>
-                    <option class="contact-content__select--option" value="1">1.商品のお届けについて</option>
-                    <option class="contact-content__select--option" value="2">2.商品の交換について</option>
-                    <option class="contact-content__select--option" value="3">3.商品トラブル</option>
-                    <option class="contact-content__select--option" value="4">4.ショップへのお問い合わせ</option>
-                    <option class="contact-content__select--option" value="5">5.その他</option>
+                    <option class="contact-content__select--option" value="1.商品のお届けについて">1.商品のお届けについて</option>
+                    <option class="contact-content__select--option" value="2.商品の交換について">2.商品の交換について</option>
+                    <option class="contact-content__select--option" value="3.商品トラブル">3.商品トラブル</option>
+                    <option class="contact-content__select--option" value="4.ショップへのお問い合わせ">4.ショップへのお問い合わせ</option>
+                    <option class="contact-content__select--option" value="5.その他">5.その他</option>
                 </select>
                 @error('department')
                     <div class="contact-form-error">{{$message}}</div>

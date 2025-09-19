@@ -64,9 +64,10 @@
                 </th>
                 <td class="confirm-content__item">{{$validated['message']}}</td>
                 </tr>
+                </div>
             </table>
             <div class="confirm-submit">
-                <button type="submit" class="submit-button">送信</button>
+                <button type="submit" class="confirm-button">送信</button>
                 <a class="cancel-button" href="{{route('contact.index')}}">修正</a>
             </div>
         </form>
