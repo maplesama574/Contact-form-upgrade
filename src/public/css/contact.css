@@ -21,6 +21,13 @@
     border-collapse: separate;
     border-spacing: 30px 0;
 }
+.contact-content__input--wrap input, 
+.cotact-content__input--wrap textarea, 
+.contact-content__input--wrap select
+{
+    width: 100%;
+    box-sizing: border-box;
+}
 .contact-item td, 
 .contact-item th{
     padding: 15px;
@@ -28,12 +35,12 @@
     vertical-align: top;
 }
 .contact-item td{
-    display: flex;
-    gap: 45px;
+    gap: 5px;
     margin: 0;
     padding: 10px;
     font-size: 15px;
     align-items: center;
+    flex-wrap: wrap;
 }
 .contact-item input::placeholder, 
 .contact-item select::placeholder{
@@ -42,9 +49,21 @@
 .content-title__red{
     color: red;
 }
+.contact-content__input--wrap-name{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+}
+.contact-content__input--wrap {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    width: 100%;
+}
 .contact-content__input--name{
     flex: 1;
-    width: 250px;
+    min-width: 50%;
     padding: 15px 10px;
     box-sizing: border-box;
     border: none;
@@ -52,9 +71,46 @@
     border-radius: 5px;
     text-align: left;
 }
+.contact-item.gender td{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+.contact-content__input--gender-wrap{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    margin-left: 0;
+}
+.contact-item.gender, 
+.contact-content__input--gender-wrap{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    margin-left: 10px;
+}
+.contact-item .contact-content__input--gender-wrap{
+    flex-basis: 100%;
+    margin-top: 5px;
+}
+.contact-content__input--gender{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 .contact-content__input--radio[type="radio"] {
     accent-color: #897a67;
     cursor: pointer;
+}
+.contact-content__input--tel-wrap{
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
 }
 .contact-content__input--tel{
     flex: 1;
@@ -64,7 +120,7 @@
     border: none;
     background-color: #f5f5f5;
     border-radius: 5px;
-    text-align: left;
+    width: 80px;
 }
 .contact-content__input--address{
     width: 100%;
@@ -112,8 +168,9 @@
     display: flex;
     align-items: center;
 }
-.contact-form-erorr{
+.contact-form-error{
     color:red;
+    font-size: 14px;
 }
 
 
