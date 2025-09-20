@@ -1,6 +1,7 @@
    @extends('layouts.app')
    @section('css')
-<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}?v={{ time() }}">
+
 @endsection
 
     
@@ -37,13 +38,14 @@
                                 @php
                                     $today = date('y-m-d');
                                 @endphp
-                                <select class="search-data" name="data" id="data" value="{{$today}}">
-                                </select>
+                                <input class="search-date" type="date" name="date" id="date" value="{{$today}}">
+                                </input>
                                 <button class="submit-button">検索</button>
                                 <a class="cancel-button" href="{{route('admin.dashboard')}}">リセット</a>
                             </form>
                         </div>
 
+                        <div class="form-ex">
                         <div class="export">
                             <form action="{{route('admin.export')}}" method="GET">
                                 <input type="hidden" name="name" value="{{request('name')}}">
@@ -56,14 +58,9 @@
                         </div>
 <!--何個あるのか-->
                         <div class="pagination">
-                            <a href="#">&laquo;</a>
-                            <a class="active" href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
-                            <a href="#">5</a>
-                            <a href="#">&raquo;</a>
+                            {{$contacts->appends(request()->query())->links()}}
                         </div>
+                    </div>
                     </div>
 
                     <div class="admin-table">
@@ -84,7 +81,7 @@
                                 <td>{{$contact->message}}</td>
                                 <td>
                                     <a class="admin-table-item__detail" href="#" data-name="{{$contact->name}}" data-gender="{{$contact->gender}}" data-email="{{$contact->email}}" data-tel="{{$contact->tel}}" data-address="{{$contact->address}}" data-building="{{$contact->building}}" data-department="{{$contact->department}}" data-message="{{$contact->message}}">詳細</a>
-                                    <form action="{{route('admin.contacts.destroy', $contact->id)}}" method="POST">
+                                    <form action="{{route('admin.contacts.destroy', $contact->id)}}" method="POST" class="delete-form" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit">削除</button>

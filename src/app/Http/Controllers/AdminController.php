@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Contact;
 
 class AdminController extends Controller
 {
-
+    public function index()
+    {
+        $contacts = Contact::orderBy ('created_at', 'desc')->paginate(7);
+        return view('admin.index', compact('contacts'));
+    }
+//検索
     public function search(Request $request)
     {
-        $query = User::query();
+        $query = Contact::query();
 
         if($request->filled('keyword')){
             $query->where('name', 'like', "%{$request->keyword}%");
@@ -20,14 +24,14 @@ class AdminController extends Controller
             $query->whereDate('created_at', $request->date);
         }
 
-        $users = $query->get();
+        $contacts = $query->orderBy('created_at', 'desc')->paginate(7);
 
-        return view('admin.dashboard', compact('users'));
+        return view('admin.index', compact('contacts'));
     }
-
+//エクスポート
     public function export(Request $request)
     {
-        $query = User::query();
+        $query = Contact::query();
 
         if ($request->filled('keyword')) {
             $query->where('name', 'like', "%{$request->keyword}%");
@@ -37,17 +41,15 @@ class AdminController extends Controller
             $query->whereDate('created_at', $request->date);
         }
 
-        $users = $query->get();
+        $contacts = $query->get();
 
-        $filename = 'users.csv';
+        $filename = 'contacts.csv';
         $handle = fopen($filename, 'w');
 
-        // ヘッダー
-        fputcsv($handle, ['ID', '名前', 'メール', '作成日']);
+        fputcsv($handle, ['ID', '名前', 'メール', '作成日', '性別', 'お問い合わせ内容']);
 
-        // データ行
-        foreach ($users as $user) {
-            fputcsv($handle, [$user->id, $user->name, $user->email, $user->created_at]);
+        foreach ($contacts as $c) {
+            fputcsv($handle, [$c->id, $c->name, $c->email, $c->created_at, $c->gender, $c->message]);
         }
 
         fclose($handle);
@@ -56,7 +58,7 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::orderBy ('created_at', 'desc')->paginate(7);
         return view('admin.dashboard', compact('contacts'));
     }
 }
