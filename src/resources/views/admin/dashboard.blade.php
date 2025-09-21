@@ -58,11 +58,11 @@
                         </div>
 <!--何個あるのか-->
                         <div class="pagination">
-                            {{$contacts->appends(request()->query())->links()}}
+                            {{$contacts->appends(request()->query())->links('pagination::bootstrap-4')}}
                         </div>
                     </div>
                     </div>
-
+<!--お問い合わせテーブル-->
                     <div class="admin-table">
                         <table class="admin-table-content">
                             <tr class="admin-table-header">
@@ -77,10 +77,24 @@
                                 <td>{{$contact->name}}</td>
                                 <td>{{$contact->gender}}</td>
                                 <td>{{$contact->email}}</td>
-                                <td>{{$contact->department}}</td>
-                                <td>{{$contact->message}}</td>
+                                <td class="message-cell">
+                                    @php
+
+                                    $departments=[
+                                        1=>'商品のお届けについて', 
+                                        2=>'商品の交換について', 
+                                        3=>'商品トラブル', 
+                                        4=>'ショップへのお問い合わせ', 
+                                        5=>'その他'];
+                                        $number=(int)$contact->department;
+                                        $text=$departments[$number] ?? '未分類';
+                                    @endphp
+
+                                    {{$number}}.{{$text}}
+                                </td>
+                                    <!--詳細ページ-->
                                 <td>
-                                    <a class="admin-table-item__detail" href="#" data-name="{{$contact->name}}" data-gender="{{$contact->gender}}" data-email="{{$contact->email}}" data-tel="{{$contact->tel}}" data-address="{{$contact->address}}" data-building="{{$contact->building}}" data-department="{{$contact->department}}" data-message="{{$contact->message}}">詳細</a>
+                                    <a class="admin-table-item__detail" href="{{route('admin.contacts.show', $contact->id)}}" >詳細</a>
                                     <form action="{{route('admin.contacts.destroy', $contact->id)}}" method="POST" class="delete-form" style="display: none;">
                                         @csrf
                                         @method('DELETE')
@@ -93,4 +107,46 @@
                     </div>
             </div>
     </div>
+
+<!--モーダル　詳細の中身-->
+<div class="detail" id="detail-model" style="display-none;">
+    <form class="detail-form" action="{{route('admin.search')}}" method="GET">
+        <a href={{route('admin.dashboard')}}>×</a>
+        <table class="detail-table">
+            <tr class="detail-table__row">
+                <th class="detail-table__header">お名前</th>
+                <td class="detail-table__item"  id="detail-name">{{contact->name}}</td>
+            </tr>
+            <tr class="detail-table__row">
+                <th class="detail-table__header">性別</th>
+                <td class="detail-table__item" id="detail-gender">{{contact->gender}}</td>
+            </tr>
+            <tr class="detail-table__row">
+                <th class="detail-table__header">メールアドレス</th>
+                <td class="detail-table__item" id="detail-email">{{contact->email}}</td>
+            </tr>
+            <tr class="detail-table__row">
+                <th class="detail-table__header">電話番号</th>
+                <td class="detail-table__item" id="detail-tel">{{contact->tel}}</td>
+            </tr>
+            <tr class="detail-table__row">
+                <th class="detail-table__header">住所</th>
+                <td class="detail-table__item" id="detail-address">{{contact->address}}</td>
+            </tr>
+            <tr class="detail-table__row">
+                <th class="detail-table__header">建物名</th>
+                <td class="detail-table__item" id="detail-building">{{contact->building}}</td>
+            </tr>
+            <tr class="detail-table__row">
+                <th class="detail-table__header">お問い合わせの種類</th>
+                <td class="detail-table__item" id="detail-department">{{contact->department}}</td>
+            </tr>
+            <tr class="detail-table__row">
+                <th class="detail-table__header">お問い合わせ内容</th>
+                <td class="detail-table__item" id="detail-message">{{contact->message}}</td>
+            </tr>
+        </table>
+        <button id="delete-button">削除</button>
+    </form>
+</div>
 @endsection

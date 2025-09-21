@@ -61,6 +61,10 @@ class AdminController extends Controller
         $contacts = Contact::orderBy ('created_at', 'desc')->paginate(7);
         return view('admin.dashboard', compact('contacts'));
     }
+    public function show(Contact $contact)
+    {
+        return view('admin.contacts.show', compact('contact'));
+    }
 }
 
 //管理者分だけ関数配置予定
