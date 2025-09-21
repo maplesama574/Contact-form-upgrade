@@ -56,10 +56,11 @@ class AdminController extends Controller
 
         return response()->download($filename)->deleteFileAfterSend(true);
     }
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         $contacts = Contact::orderBy ('created_at', 'desc')->paginate(7);
-        return view('admin.dashboard', compact('contacts'));
+        $showDetailed=$request->query('show');
+        return view('admin.dashboard', compact('contacts', 'showDetailed'));
     }
     public function show(Contact $contact)
     {

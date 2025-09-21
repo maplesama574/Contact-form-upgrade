@@ -177,3 +177,19 @@
     padding: 15px 10px;
     vertical-align: middle;
 }
+
+/*詳細ページ*/
+.detail{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 3px;
+    z-index: 100;
+}
+.detail.active{
+    display: block;
+}

@@ -94,12 +94,7 @@
                                 </td>
                                     <!--詳細ページ-->
                                 <td>
-                                    <a class="admin-table-item__detail" href="{{route('admin.contacts.show', $contact->id)}}" >詳細</a>
-                                    <form action="{{route('admin.contacts.destroy', $contact->id)}}" method="POST" class="delete-form" style="display: none;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit">削除</button>
-                                    </form>
+                                    <a class="admin-table-item__detail" href="{{route('admin.dashboard', ['show'=>$contact->id])}}">詳細</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -109,44 +104,46 @@
     </div>
 
 <!--モーダル　詳細の中身-->
-<div class="detail" id="detail-model" style="display-none;">
-    <form class="detail-form" action="{{route('admin.search')}}" method="GET">
-        <a href={{route('admin.dashboard')}}>×</a>
+    @foreach($contacts as $contact)
+    <div id="detail-{{$contact->id}}" class="detail">
+    <form class="detail-form">
+        <a href="{{route('admin.dashboard')}}" class="detail-close">×</a>
         <table class="detail-table">
-            <tr class="detail-table__row">
-                <th class="detail-table__header">お名前</th>
-                <td class="detail-table__item"  id="detail-name">{{contact->name}}</td>
+            <tr>
+                <th>お名前</th>
+                <td>{{ $contact->name }}</td>
             </tr>
-            <tr class="detail-table__row">
-                <th class="detail-table__header">性別</th>
-                <td class="detail-table__item" id="detail-gender">{{contact->gender}}</td>
+            <tr>
+                <th>性別</th>
+                <td>{{ $contact->gender}}</td>
             </tr>
-            <tr class="detail-table__row">
-                <th class="detail-table__header">メールアドレス</th>
-                <td class="detail-table__item" id="detail-email">{{contact->email}}</td>
+            <tr>
+                <th>メールアドレス</th>
+                <td>{{ $contact->email }}</td>
             </tr>
-            <tr class="detail-table__row">
-                <th class="detail-table__header">電話番号</th>
-                <td class="detail-table__item" id="detail-tel">{{contact->tel}}</td>
+            <tr>
+                <th>電話番号</th>
+                <td>{{ $contact->tel}}</td>
             </tr>
-            <tr class="detail-table__row">
-                <th class="detail-table__header">住所</th>
-                <td class="detail-table__item" id="detail-address">{{contact->address}}</td>
+            <tr>
+                <th>住所</th>
+                <td>{{ $contact->address}}</td>
             </tr>
-            <tr class="detail-table__row">
-                <th class="detail-table__header">建物名</th>
-                <td class="detail-table__item" id="detail-building">{{contact->building}}</td>
+            <tr>
+                <th>建物名</th>
+                <td>{{ $contact->building}}</td>
             </tr>
-            <tr class="detail-table__row">
-                <th class="detail-table__header">お問い合わせの種類</th>
-                <td class="detail-table__item" id="detail-department">{{contact->department}}</td>
+            <tr>
+                <th>お問い合わせの種類</th>
+                <td>{{ $contact->department}}</td>
             </tr>
-            <tr class="detail-table__row">
-                <th class="detail-table__header">お問い合わせ内容</th>
-                <td class="detail-table__item" id="detail-message">{{contact->message}}</td>
+            <tr>
+                <th>お問い合わせ内容</th>
+                <td>{{ $contact->message}}</td>
             </tr>
         </table>
-        <button id="delete-button">削除</button>
+        <button class="delete-button">削除</button>
     </form>
-</div>
+    </div>
+    @endforeach
 @endsection
