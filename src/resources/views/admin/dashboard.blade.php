@@ -41,7 +41,7 @@
                                 <input class="search-date" type="date" name="date" id="date" value="{{$today}}">
                                 </input>
                                 <button class="submit-button">検索</button>
-                                <a class="cancel-button" href="{{route('admin.dashboard')}}">リセット</a>
+                                <a class="reset-button" href="{{route('admin.dashboard')}}">リセット</a>
                             </form>
                         </div>
 
@@ -94,7 +94,7 @@
                                 </td>
                                     <!--詳細ページ-->
                                 <td>
-                                    <a class="admin-table-item__detail" href="{{route('admin.dashboard', ['show'=>$contact->id])}}">詳細</a>
+                                    <a class="admin-table-item__detail" href="#detail-{{$contact->id}}" data-id="{{$contact->id}}">詳細</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -106,8 +106,8 @@
 <!--モーダル　詳細の中身-->
     @foreach($contacts as $contact)
     <div id="detail-{{$contact->id}}" class="detail">
-    <form class="detail-form">
-        <a href="{{route('admin.dashboard')}}" class="detail-close">×</a>
+        <div class="detail-content">
+            <a href="#" class="cancel-button">&times;</a>
         <table class="detail-table">
             <tr>
                 <th>お名前</th>
@@ -142,8 +142,12 @@
                 <td>{{ $contact->message}}</td>
             </tr>
         </table>
+        <form method="POST" action="{{route('admin.contacts.destroy', $contact->id)}}">
+            @csrf
+            @method('DELETE')
         <button class="delete-button">削除</button>
-    </form>
+        </form>
+    </div>
     </div>
     @endforeach
 @endsection
