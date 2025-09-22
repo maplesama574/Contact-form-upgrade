@@ -210,22 +210,29 @@
     box-sizing: border-box;
 }
 .detail-table{
-    width: 100%;
+    width: 80%;
     height: 60%;
     margin: 0 auto;
     color: #8b7968;
     border-collapse: separate;
-    border-spacing: 15px 10px;
+    border-spacing: 30px 0;
+    text-align: center;
 }
-.detail-table th, 
+.detail-table th{
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: left;
+    vertical-align: middle;
+    min-width: 120px;
+    padding: 10px;
+}
 .detail-table td{
     word-wrap: break-word;
     white-space: normal;
-    text-align: center;
     vertical-align: middle;
     padding: 5px 10px;
     display: inline-block;
     min-width: 120px;
     padding: 10px;
-    text-align: left;
+    text-align: right;
 }

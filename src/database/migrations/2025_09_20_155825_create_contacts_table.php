@@ -13,7 +13,10 @@ class CreateContactsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->enum('gender', ['男性', '女性', 'その他']);
-            $table->unsignedBigInteger('department'); 
+            $table->string('tel');
+            $table->string('address');
+            $table->string('building')->nullable();
+            $table->string('department'); 
             $table->text('message');
             $table->timestamps();
         });

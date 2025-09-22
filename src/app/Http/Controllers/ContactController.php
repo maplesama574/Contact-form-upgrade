@@ -28,7 +28,7 @@ class ContactController extends Controller
                 'message'=>'required|string|max:120', 
             ]
             );
-            return view('contact.confirm', ['validated'=>$validated]);
+            return view('contact.confirm', $validated);
     }
 
     public function submit(Request $request)
