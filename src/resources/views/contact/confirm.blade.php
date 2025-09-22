@@ -8,8 +8,11 @@
     <div class="confirm-title">
         <h2>Confirm</h2>
     </div>
-    <form class="confirm-table" method="POST" action="{{route('contact.submit')}}">
+    <form class="confirm-table" method="POST" action="{{ route('contact.submit') }}">
         @csrf
+        @foreach ($validated as $key => $value)
+        <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+        @endforeach
             <table class="confirm-content">
                 <tr class="confirm-item">
                     <th class="confirm-header">

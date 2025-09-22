@@ -4,7 +4,7 @@
    @endsection
     
    @section('login')
-    <a class="header-login"href="/">login</a>
+    <a class="header-login"href="{{route('login')}}">login</a>
    @endsection
 
    @section('content')
@@ -14,7 +14,7 @@
                          <h2>Login</h2>
                     </div>
                     <div class="login-content">
-                        <form class="login-content__inner" method="POST" action="{{route('login')}}">
+                        <form class="login-content__inner" method="POST" action="{{route('login.submit')}}">
                         @csrf
                             <div class="login-content__item">
                             <p>メールアドレス</p>

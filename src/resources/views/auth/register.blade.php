@@ -4,7 +4,7 @@
    @endsection
     
    @section('login')
-    <a class="header-login"href="/">login</a>
+    <a class="header-login"href="{{route('login')}}">login</a>
    @endsection
 
    @section('content')

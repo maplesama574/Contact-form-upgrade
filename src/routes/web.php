@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,25 +17,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-
+Route::get('/contact/confirm', function () {
+    return redirect()->route('contact.index');
+});
 Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
-
-Route::get('/confirm', function(){return redirect()->route('contact.index');});
 
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::get('/contact/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/admin/search', [AdminController::class, 'search'])->name('admin.search');
 Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 Route::delete('/admin/contacts/{id}', [AdminController::class, 'destroy'])->name('admin.contacts.destroy');
-Route::get('admin/contacts/{contact}', [App\Http\Controllers\AdminController::class, 'show'])->name('admin.contacts.show');
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
+
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');

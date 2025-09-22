@@ -12,6 +12,9 @@ class ContactController extends Controller
     }
     public function confirm(Request $request)
     {
+        if (!$request->isMethod('post')) {
+        return redirect()->route('contact.index'); 
+    }
 
         $validated = $request->validate(
             [
@@ -28,7 +31,7 @@ class ContactController extends Controller
                 'message'=>'required|string|max:120', 
             ]
             );
-            return view('contact.confirm', $validated);
+            return view('contact.confirm', ['validated'=> $validated]);
     }
 
     public function submit(Request $request)

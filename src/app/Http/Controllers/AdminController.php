@@ -12,22 +12,7 @@ class AdminController extends Controller
         $contacts = Contact::orderBy ('created_at', 'desc')->paginate(7);
         return view('admin.index', compact('contacts'));
     }
-//検索
-    public function search(Request $request)
-    {
-        $query = Contact::query();
 
-        if($request->filled('keyword')){
-            $query->where('name', 'like', "%{$request->keyword}%");
-        }
-        if ($request->filled('date')) {
-            $query->whereDate('created_at', $request->date);
-        }
-
-        $contacts = $query->orderBy('created_at', 'desc')->paginate(7);
-
-        return view('admin.index', compact('contacts'));
-    }
 //エクスポート
     public function export(Request $request)
     {
@@ -57,14 +42,42 @@ class AdminController extends Controller
         return response()->download($filename)->deleteFileAfterSend(true);
     }
     public function dashboard(Request $request)
-    {
-        $contacts = Contact::orderBy ('created_at', 'desc')->paginate(7);
-        $showDetailed=$request->query('show');
-        return view('admin.dashboard', compact('contacts', 'showDetailed'));
+{
+    $query = Contact::query();
+
+    if ($request->filled('keyword')) {
+        $query->where(function($q) use ($request) {
+            $q->where('name', 'like', "%{$request->keyword}%")
+              ->orWhere('email', 'like', "%{$request->keyword}%");
+        });
     }
-    public function show(Contact $contact)
+
+    if ($request->filled('gender') && $request->gender !== '全て') {
+        $query->where('gender', $request->gender);
+    }
+
+    if ($request->filled('department')) {
+        $query->where('department', $request->department);
+    }
+
+    if ($request->filled('date')) {
+        $query->whereDate('created_at', $request->date);
+    }
+
+    $contacts = $query->orderBy('created_at', 'desc')->paginate(7);
+    $showDetailed = $request->query('show');
+
+    return view('admin.dashboard', compact('contacts', 'showDetailed'));
+}
+
+    
+    //削除
+    public function destroy($id)
     {
-        return view('admin.contacts.show', compact('contact'));
+        $contact = Contact::findOrFail($id); 
+        $contact->delete();                 
+
+        return redirect()->route('admin.dashboard');
     }
 }
 

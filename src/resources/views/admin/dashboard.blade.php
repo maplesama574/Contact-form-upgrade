@@ -6,7 +6,7 @@
 
     
    @section('login')
-    <a class="header-login" href="/">login</a>
+    <a class="header-login" href="{{route('login')}}">login</a>
    @endsection
 
    @section('content')
@@ -18,7 +18,7 @@
                     <div class="admin-content">
 <!--コンテンツ-->
                         <div class="search-box">
-                            <form class="search-form" action="{{route('admin.search')}}" method="GET">
+                            <form class="search-form" action="{{route('admin.dashboard')}}" method="GET">
                                 <input class="search-text" type="text" name="keyword" placeholder="名前やメールアドレスを入力してください">
                                 <select class="search-gender" name="gender" id="gender">
                                     <option class="search-gender--option" value="" disabled selected>性別</option>              <option class="search-gender--option" value="全て">全て</option>
@@ -139,13 +139,14 @@
             </tr>
             <tr>
                 <th>お問い合わせ内容</th>
-                <td>{{ $contact->message}}</td>
+                <td>{!! nl2br(e($contact->message)) !!}</td>
+
             </tr>
         </table>
-        <form method="POST" action="{{route('admin.contacts.destroy', $contact->id)}}">
+        <form method="POST" action="{{route('admin.contacts.destroy', $contact->id)}}" class="delete">
             @csrf
             @method('DELETE')
-        <button class="delete-button">削除</button>
+        <button type="submit" class="delete-button">削除</button>
         </form>
     </div>
     </div>
