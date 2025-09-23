@@ -14,6 +14,7 @@
     text-align: center;
     margin: 0;
     padding: -5px;
+    color: #aa9f90;
 }
 .contact-content, 
 .confirm-content{
@@ -71,26 +72,19 @@
     border-radius: 5px;
     text-align: left;
 }
+.contact-item.gender{
+    display: table-row;
+}
 .contact-item.gender td{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+    display: block;
+    padding: 10px;
 }
 .contact-content__input--gender-wrap{
     display: flex;
     flex-direction: row;
     gap: 20px;
     align-items: center;
-    margin-left: 0;
-}
-.contact-item.gender, 
-.contact-content__input--gender-wrap{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
-    margin-left: 10px;
+    margin: 0;
 }
 .contact-item .contact-content__input--gender-wrap{
     flex-basis: 100%;
@@ -177,36 +171,31 @@
 /*以下、confirm.blade.php*/
 .confirm-table{
     border-collapse: collapse;
-    border-spacing: 0;
-    table-layout: fixed;
     width: 700px;
     margin: 0 auto;
 }
-.confirm-table tr, 
 .confirm-table th, 
-.confirm-table td{
+.confirm-table td {
     border: 1px solid #f7f7f7;
-    margin: 0;
-    padding: 10px 20px;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
 }
 .confirm-content{
     width: 100%;
 }
 .confirm-header{
-    display: table-cell;
     color: white;
     background: #bba99a;
-    margin:0;
     width: 200px;
-    text-align: center;
-    padding: 5px 10px;
+    display: table-cell;
+    padding: 10px;
 }
 .confirm-content__item{
     width: 500px;
     word-break: break-word;
-    padding: 5px 10px;
-    text-align: left;
     display: table-cell;
+    padding: 10px;
 }
 
 

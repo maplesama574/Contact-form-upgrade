@@ -25,7 +25,14 @@ class AuthController extends Controller
             'name'=> 'required|string|max:255', 
             'email'=>'required|email|unique:users,email', 
             'password'=>'required|string|min:8',
-        ]);
+        ], 
+        [
+            'name.required'=> 'お名前を入力してください', 
+            'email.required'=>'メールアドレスを入力してください', 
+            'email.email'=>'メールアドレスは「ユーザー名@ドメイン」形式で入力してください', 
+            'password.required'=>'パスワードを入力してください',
+        ]
+    );
 
         $user = User::create([
             'name' => $request->name,
@@ -43,16 +50,21 @@ class AuthController extends Controller
         $request->validate([
             'email'=>'required|email', 
             'password'=>'required|string|min:8',
+        ],
+            [
+            'email.required'=>'メールアドレスを入力してください', 
+            'email.email'=>'メールアドレスは「ユーザー名@ドメイン」形式で入力してください', 
+            'password.required'=>'パスワードを入力してください',
         ]);
+
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('admin/dashboard');
-        }
+        $request->session()->regenerate();
 
-        return back()->withErrors([
-            'email' => 'メールアドレスまたはパスワードが正しくありません',
-        ]);
-    }
+        return redirect()->intended($request->input('redirect_to') ?? '/');
+        }
+}
+
 }

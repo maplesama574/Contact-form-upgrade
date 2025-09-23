@@ -10,7 +10,7 @@ class AdminController extends Controller
     public function index()
     {
         $contacts = Contact::orderBy ('created_at', 'desc')->paginate(7);
-        return view('admin.index', compact('contacts'));
+        return view('admin.dashboard', compact('contacts'));
     }
 
 //エクスポート

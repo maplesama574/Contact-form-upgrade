@@ -16,13 +16,13 @@
             <td>
                 <div class="contact-content__input--wrap-name">
                 <div class="contact-content__input--item">
-                <input class="contact-content__input--name" type="name" name="first_name" placeholder="例:山田">
+                <input class="contact-content__input--name" type="name" name="first_name" value="{{ old('first_name') }}" placeholder="例:山田">
                 @error('first_name')
                     <div class="contact-form-error">{{$message}}</div>
                 @enderror
                 </div>
                 <div class="contact-content__input--item">
-                <input class="contact-content__input--name" type="name" name="last_name" placeholder="例:太郎">
+                <input class="contact-content__input--name" type="name" name="last_name" value="{{ old('last_name') }}" placeholder="例:太郎">
                 @error('last_name')
                     <div class="contact-form-error">{{$message}}</div>
                 @enderror
@@ -35,13 +35,13 @@
             <td>
                 <div class="contact-content__input--gender-wrap">
                 <label for="male">
-                    <input class="contact-content__input--radio" type="radio" name="gender" value="male">男性
+                    <input type="radio" name="gender" value="male" {{ old('gender')=='male' ? 'checked' : '' }}>男性
                 </label>
                 <label for="female">
-                    <input class="contact-content__input--radio" type="radio" name="gender" value="female">女性
+                    <input class="contact-content__input--radio" type="radio" name="gender" value="female" {{ old('gender')=='female' ? 'checked' : '' }}>女性
                 </label>
                 <label for="other">
-                    <input class="contact-content__input--radio" type="radio" name="gender" value="other">その他
+                    <input class="contact-content__input--radio" type="radio" name="gender" value="other" {{ old('gender')=='other' ? 'checked' : '' }}>その他
                 </label>
                 </div>
                 @error('gender')
@@ -53,7 +53,7 @@
             <th class="content-title">メールアドレス<span class="content-title__red">※</span></th>
             <td>
                 <div class="contact-content__input--wrap">
-                <input class="contact-content__input--address" type="email" name="email" placeholder="例:test@example.com">
+                <input class="contact-content__input--address" type="email" name="email" value="{{ old('email') }}" placeholder="例:test@example.com">
                 @error('email')
                     <div class="contact-form-error">{{$message}}</div>
                 @enderror
@@ -64,22 +64,22 @@
             <th class="content-title">電話番号<span class="content-title__red">※</span></th>
             <td>
                 <div class="contact-content__input--tel-wrap">
-                <input class="contact-content__input--tel" type="tel" name="tel1" placeholder="080">
+                <input class="contact-content__input--tel" type="tel" name="tel1" value="{{ old('tel1') }}" placeholder="080">
                     <span>-</span>
-                <input class="contact-content__input--tel" type="tel" name="tel2" placeholder="1234">
+                <input class="contact-content__input--tel" type="tel" name="tel2" value="{{ old('tel2') }}" placeholder="1234">
                     <span>-</span>
-                <input class="contact-content__input--tel" type="tel" name="tel3" placeholder="5678">
-            @error('tel')
-                <div class="contact-form-error">{{$message}}</div>
-            @enderror
+                <input class="contact-content__input--tel" type="tel" name="tel3" value="{{ old('tel3') }}" placeholder="5678">
                 </div>
+                @error('tel')
+                <div class="contact-form-error">{{$message}}</div>
+                @enderror
             </td> 
         </tr>
         <tr class="contact-item">
             <th class="content-title">住所<span class="content-title__red">※</span></th>
             <td>
                 <div class="contact-content__input--wrap">
-                <input class="contact-content__input--address" type="text" name="address" placeholder="例:東京都渋谷区千駄ヵ谷1-2-3">
+                <input class="contact-content__input--address" type="text" name="address" value="{{ old('address') }}" placeholder="例:東京都渋谷区千駄ヵ谷1-2-3">
                 @error('address')
                     <div class="contact-form-error">{{$message}}</div>
                 @enderror
@@ -89,7 +89,7 @@
         <tr class="contact-item">
             <th class="content-title">建物名</th>
             <td>
-                <input class="contact-content__input--address" type="text" name="building" placeholder="例:千駄ヵ谷マンション101">
+                <input class="contact-content__input--address" type="text" name="building" value="{{ old('building') }}" placeholder="例:千駄ヵ谷マンション101">
             </td>
         </tr>
         <tr class="contact-item">
@@ -98,11 +98,11 @@
                 <div class="contact-content__input--wrap">
                 <select class="contact-content__select" name="department" id="department">
                     <option class="contact-content__select--option" value="">選択してください</option>
-                    <option class="contact-content__select--option" value="1.商品のお届けについて">1.商品のお届けについて</option>
-                    <option class="contact-content__select--option" value="2.商品の交換について">2.商品の交換について</option>
-                    <option class="contact-content__select--option" value="3.商品トラブル">3.商品トラブル</option>
-                    <option class="contact-content__select--option" value="4.ショップへのお問い合わせ">4.ショップへのお問い合わせ</option>
-                    <option class="contact-content__select--option" value="5.その他">5.その他</option>
+                    <option class="contact-content__select--option" value="1.商品のお届けについて" {{ old('department')=='1.商品のお届けについて' ? 'selected' : '' }}>1.商品のお届けについて</option>
+                    <option class="contact-content__select--option" value="2.商品の交換について" {{ old('department')=='2.商品の交換について' ? 'selected' : '' }}>2.商品の交換について</option>
+                    <option class="contact-content__select--option" value="3.商品トラブル" {{ old('department')=='3.商品トラブル' ? 'selected' : '' }}>3.商品トラブル</option>
+                    <option class="contact-content__select--option" value="4.ショップへのお問い合わせ" {{ old('department')=='4.ショップへのお問い合わせ' ? 'selected' : '' }}>4.ショップへのお問い合わせ</option>
+                    <option class="contact-content__select--option" value="5.その他" {{ old('department')=='5.その他' ? 'selected' : '' }}>5.その他</option>
                 </select>
                 @error('department')
                     <div class="contact-form-error">{{$message}}</div>

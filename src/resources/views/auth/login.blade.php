@@ -30,6 +30,7 @@
                             <div class="login-error">{{$message}}</div>
                             @enderror
                             </div>
+                            <input type="hidden" name="redirect_to" value="{{ $redirectTo ?? '' }}">
                         <button class="submit-button">ログイン</button>
                     </div>
                 </form>
