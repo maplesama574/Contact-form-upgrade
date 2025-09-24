@@ -23,6 +23,10 @@ bash
  bash
     php artisan migrate --seed
    
+   
+5. お問い合わせフォームのみ
+ bash
+    php artisan serve
 
 ---
 
@@ -34,6 +38,8 @@ bash
 - Docker / Docker Compose  
 
 ## ER図
+[ER図 PDF](./docker/文書3.pdf)
+
 
 
 
