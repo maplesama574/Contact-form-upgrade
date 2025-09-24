@@ -52,7 +52,7 @@ class AdminController extends Controller
         });
     }
 
-    if ($request->filled('gender') && $request->gender !== '全て') {
+    if ($request->filled('gender')) {
         $query->where('gender', $request->gender);
     }
 
@@ -65,10 +65,9 @@ class AdminController extends Controller
     }
 
     $contacts = $query->orderBy('created_at', 'desc')->paginate(7);
-    $showDetailed = $request->query('show');
-
-    return view('admin.dashboard', compact('contacts', 'showDetailed'));
+    return view('admin.dashboard', compact('contacts'));
 }
+
 
     
     //削除

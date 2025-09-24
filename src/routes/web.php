@@ -30,10 +30,10 @@ Route::post('/contact/submit', [ContactController::class, 'submit'])->name('cont
 Route::get('/contact/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 
 /*管理*/
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 Route::delete('/admin/contacts/{id}', [AdminController::class, 'destroy'])->name('admin.contacts.destroy');
+
 
 
 /*ログイン*/
